@@ -1,8 +1,11 @@
 package com.cirino.rafaela.inditex.pricingservice.domain.model;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Getter
 public class Money {
 
     private final BigDecimal amount;
@@ -14,14 +17,6 @@ public class Money {
         }
         this.amount = amount;
         this.currency = currency;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getCurrency() {
-        return currency;
     }
 
     @Override
