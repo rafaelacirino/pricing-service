@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>21</java.version>
         <sonar.organization>rafaelacirino</sonar.organization>
-        <sonar.projectKey>rafaelacirino-pricing-service</sonar.projectKey>
+        <sonar.projectKey>rafaelacirino_pricing-service</sonar.projectKey>
     </properties>
 	<dependencies>
 		<dependency>
