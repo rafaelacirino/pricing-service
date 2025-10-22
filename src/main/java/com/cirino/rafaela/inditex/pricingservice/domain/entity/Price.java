@@ -2,7 +2,6 @@ package com.cirino.rafaela.inditex.pricingservice.domain.entity;
 
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Price {
