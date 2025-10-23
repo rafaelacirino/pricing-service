@@ -2,6 +2,7 @@ package com.cirino.rafaela.inditex.pricingservice.infrastructure.adapter.inbound
 
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.inbound.GetPriceUseCase;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class PriceController {
     }
 
     @GetMapping
+    @Operation(summary = "getProductByID", description = "Get product by ID and brand Id and date")
     public ResponseEntity<PriceResponseDto> getPrice(
             @RequestParam("applicationDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate,
             @RequestParam("productId") Long productId,
