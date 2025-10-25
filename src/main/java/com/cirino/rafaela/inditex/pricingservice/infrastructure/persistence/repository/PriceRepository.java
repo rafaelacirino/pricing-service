@@ -10,8 +10,10 @@ import java.util.List;
 @Repository
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 
-    List<PriceEntity> findByProductIdAndBrandIdAndStartDateBeforeAndEndDateAfter(Long productId,
-                                                                                 Long brandId,
-                                                                                 LocalDateTime startDate,
-                                                                                 LocalDateTime endDate);
+    List<PriceEntity> findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
+            Long productId,
+            Long brandId,
+            LocalDateTime startDate,
+            LocalDateTime endDate
+    );
 }

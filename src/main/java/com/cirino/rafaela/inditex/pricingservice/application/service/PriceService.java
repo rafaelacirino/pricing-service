@@ -26,6 +26,7 @@ public class PriceService implements GetPriceUseCase {
         return new PriceResponseDto(
                 price.getProductId(),
                 price.getBrandId(),
+                price.getBrandName(),
                 price.getPriceList(),
                 price.getStartDate(),
                 price.getEndDate(),

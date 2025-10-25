@@ -20,6 +20,9 @@ public class PriceEntity {
     @Column(name = "brand_id")
     private Long brandId;
 
+    @Column(name = "brand_name")
+    private String brandName;
+
     @Column(name = "start_date")
     private LocalDateTime startDate;
 

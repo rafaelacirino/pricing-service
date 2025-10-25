@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class Price {
 
     private final Long brandId;
+    private final String brandName;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
     private final Integer priceList;
@@ -16,10 +17,11 @@ public class Price {
     private final Integer priority;
     private final Money money;
 
-    public Price(Long brandId, LocalDateTime startDate,
+    public Price(Long brandId, String brandName, LocalDateTime startDate,
                  LocalDateTime endDate, Integer priceList, Long productId,
                  Integer priority, Money money) {
         this.brandId = brandId;
+        this.brandName = brandName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.priceList = priceList;

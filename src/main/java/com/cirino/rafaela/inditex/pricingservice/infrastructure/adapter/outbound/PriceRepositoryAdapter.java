@@ -19,14 +19,14 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
     private final PriceRepository  priceRepository;
 
-    public PriceRepositoryAdapter(PriceRepository priceRepository, PriceRepository priceRepository1) {
-        this.priceRepository = priceRepository1;
+    public PriceRepositoryAdapter(PriceRepository priceRepository) {
+        this.priceRepository = priceRepository;
     }
 
     @Override
     public Optional<Price> findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         return priceRepository
-                .findByProductIdAndBrandIdAndStartDateBeforeAndEndDateAfter(productId, brandId,
+                .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(productId, brandId,
                                                                             applicationDate, applicationDate)
                 .stream()
                 .max(Comparator.comparingInt(PriceEntity::getPriority))
@@ -36,6 +36,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
     private Price toDomain(PriceEntity priceEntity) {
         return new Price(
                 priceEntity.getBrandId(),
+                priceEntity.getBrandName(),
                 priceEntity.getStartDate(),
                 priceEntity.getEndDate(),
                 priceEntity.getPriceList(),
