@@ -1,11 +1,13 @@
 package com.cirino.rafaela.inditex.pricingservice.domain.entity;
 
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class Price {
 
     private final Long brandId;
@@ -16,17 +18,4 @@ public class Price {
     private final Long productId;
     private final Integer priority;
     private final Money money;
-
-    public Price(Long brandId, String brandName, LocalDateTime startDate,
-                 LocalDateTime endDate, Integer priceList, Long productId,
-                 Integer priority, Money money) {
-        this.brandId = brandId;
-        this.brandName = brandName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.priceList = priceList;
-        this.productId = productId;
-        this.priority = priority;
-        this.money = money;
-    }
 }

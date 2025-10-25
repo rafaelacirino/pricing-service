@@ -34,15 +34,15 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
     }
 
     private Price toDomain(PriceEntity priceEntity) {
-        return new Price(
-                priceEntity.getBrandId(),
-                priceEntity.getBrandName(),
-                priceEntity.getStartDate(),
-                priceEntity.getEndDate(),
-                priceEntity.getPriceList(),
-                priceEntity.getProductId(),
-                priceEntity.getPriority(),
-                new Money(priceEntity.getPrice(), priceEntity.getCurrency())
-        );
+        return Price.builder()
+                .brandId(priceEntity.getBrandId())
+                .brandName(priceEntity.getBrandName())
+                .startDate(priceEntity.getStartDate())
+                .endDate(priceEntity.getEndDate())
+                .priceList(priceEntity.getPriceList())
+                .productId(priceEntity.getProductId())
+                .priority(priceEntity.getPriority())
+                .money(new Money(priceEntity.getPrice(), priceEntity.getCurrency()))
+                .build();
     }
 }

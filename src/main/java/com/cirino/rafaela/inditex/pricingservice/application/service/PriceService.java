@@ -23,15 +23,15 @@ public class PriceService implements GetPriceUseCase {
         Price price = priceRepository.findApplicablePrice(applicationDate, productId, brandId)
                 .orElseThrow(() -> new PriceNotFoundException(applicationDate, productId, brandId));
 
-        return new PriceResponseDto(
-                price.getProductId(),
-                price.getBrandId(),
-                price.getBrandName(),
-                price.getPriceList(),
-                price.getStartDate(),
-                price.getEndDate(),
-                price.getMoney().getAmount(),
-                price.getMoney().getCurrency()
-        );
+        return PriceResponseDto.builder()
+                .productId(price.getProductId())
+                .brandId(price.getBrandId())
+                .brandName(price.getBrandName())
+                .priceList(price.getPriceList())
+                .startDate(price.getStartDate())
+                .endDate(price.getEndDate())
+                .price(price.getMoney().getAmount())
+                .currency(price.getMoney().getCurrency())
+                .build();
     }
 }
