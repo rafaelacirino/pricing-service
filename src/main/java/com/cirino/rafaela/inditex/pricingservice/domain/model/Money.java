@@ -1,11 +1,14 @@
 package com.cirino.rafaela.inditex.pricingservice.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Getter
+@EqualsAndHashCode
+@ToString
 public class Money {
 
     private final BigDecimal amount;
@@ -17,24 +20,5 @@ public class Money {
         }
         this.amount = amount;
         this.currency = currency;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Money money)) return false;
-        return Objects.equals(amount, money.amount) && Objects.equals(currency, money.currency);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount, currency);
-    }
-
-    @Override
-    public String toString() {
-        return "Money{" +
-                "amount=" + amount +
-                ", currency='" + currency + '\'' +
-                '}';
     }
 }

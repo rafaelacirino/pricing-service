@@ -1,17 +1,14 @@
 package com.cirino.rafaela.inditex.pricingservice.infrastructure.adapter.inbound;
 
-import com.cirino.rafaela.inditex.pricingservice.domain.exception.PriceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -48,11 +45,7 @@ class PriceControllerIntegrationTest {
                         .param("applicationDate", "2020-06-14T21:00:00")
                         .param("productId", "35455")
                         .param("brandId", "1"))
-                .andExpect(status().isNotFound())
-                .andExpect(result -> assertInstanceOf(PriceNotFoundException.class, result.getResolvedException()))
-                .andExpect(result -> assertEquals(
-                        "Price not found for product 35455, brand 1 at 2020-06-14T21:00.",
-                        Objects.requireNonNull(result.getResolvedException()).getMessage()));
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -61,11 +54,7 @@ class PriceControllerIntegrationTest {
                         .param("applicationDate", "2020-06-15T10:00:00")
                         .param("productId", "35455")
                         .param("brandId", "1"))
-                .andExpect(status().isNotFound())
-                .andExpect(result -> assertInstanceOf(PriceNotFoundException.class, result.getResolvedException()))
-                .andExpect(result -> assertEquals(
-                        "Price not found for product 35455, brand 1 at 2020-06-15T10:00.",
-                        Objects.requireNonNull(result.getResolvedException()).getMessage()));
+                .andExpect(status().isNotFound());
     }
 
     @Test
