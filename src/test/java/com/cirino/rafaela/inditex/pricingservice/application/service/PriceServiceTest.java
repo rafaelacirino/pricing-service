@@ -2,7 +2,7 @@ package com.cirino.rafaela.inditex.pricingservice.application.service;
 
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.outbound.PriceRepositoryPort;
-import com.cirino.rafaela.inditex.pricingservice.domain.entity.Price;
+import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.domain.exception.PriceNotFoundException;
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
 import org.junit.jupiter.api.Test;
