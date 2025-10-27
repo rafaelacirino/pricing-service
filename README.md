@@ -139,6 +139,8 @@ Visual documentation and screenshots of the Swagger UI, H2 Console, and test res
 
 
 * H2 Connection
+
+
 ![H2 Connection](src/main/resources/assets/h2Connection.png)
 
 
