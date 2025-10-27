@@ -1,6 +1,6 @@
 package com.cirino.rafaela.inditex.pricingservice.application.ports.outbound;
 
-import com.cirino.rafaela.inditex.pricingservice.domain.entity.Price;
+import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

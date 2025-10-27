@@ -1,6 +1,5 @@
-package com.cirino.rafaela.inditex.pricingservice.domain.entity;
+package com.cirino.rafaela.inditex.pricingservice.domain.model;
 
-import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

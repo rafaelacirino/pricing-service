@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * The interface Price repository.
+ */
 @Repository
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 
