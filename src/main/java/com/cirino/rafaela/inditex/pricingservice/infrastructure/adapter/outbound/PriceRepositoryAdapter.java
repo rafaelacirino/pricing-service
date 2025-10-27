@@ -26,8 +26,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
     @Override
     public Optional<Price> findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         return priceRepository
-                .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(productId, brandId,
-                                                                            applicationDate, applicationDate)
+                .findApplicablePrices(applicationDate, productId, brandId)
                 .stream()
                 .max(Comparator.comparingInt(PriceEntity::getPriority))
                 .map(this::toDomain);

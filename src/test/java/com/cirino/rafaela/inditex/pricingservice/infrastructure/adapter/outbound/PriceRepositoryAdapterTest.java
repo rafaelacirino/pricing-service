@@ -55,8 +55,8 @@ class PriceRepositoryAdapterTest {
         highPriority.setPrice(new BigDecimal("35.50"));
         highPriority.setCurrency("EUR");
 
-        when(priceRepository.findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
-                productId, brandId, date, date)).thenReturn(List.of(lowPriority, highPriority));
+        when(priceRepository.findApplicablePrices(date, productId, brandId))
+                .thenReturn(List.of(lowPriority, highPriority));
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
 
@@ -77,8 +77,7 @@ class PriceRepositoryAdapterTest {
         Long productId = 35455L;
         Long brandId = 1L;
 
-        when(priceRepository.findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
-                productId, brandId, date, date)).thenReturn(List.of());
+        when(priceRepository.findApplicablePrices(date, productId, brandId)).thenReturn(List.of());
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
 

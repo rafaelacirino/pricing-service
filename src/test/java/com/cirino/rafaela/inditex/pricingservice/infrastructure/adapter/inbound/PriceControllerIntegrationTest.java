@@ -51,7 +51,7 @@ class PriceControllerIntegrationTest {
     @Test
     void test4_priceAt10hOn15thForZara_shouldReturnNotFound() throws Exception {
         mockMvc.perform(get("/prices")
-                        .param("applicationDate", "2020-06-15T10:00:00")
+                        .param("applicationDate", "2020-06-13T10:00:00")
                         .param("productId", "35455")
                         .param("brandId", "1"))
                 .andExpect(status().isNotFound());

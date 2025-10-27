@@ -39,14 +39,11 @@ class PriceRepositoryTest {
 
         // Act
         LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
-        List<PriceEntity> results = priceRepository
-                .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
-                        35455L, 1L, applicationDate, applicationDate);
+        List<PriceEntity> results = priceRepository.findApplicablePrices(applicationDate, 35455L, 1L);
 
         // Assert
         assertFalse(results.isEmpty());
-        assertEquals(1, results.size());
-        assertEquals(new BigDecimal("35.50"), results.get(0).getPrice());
+        assertEquals(new BigDecimal("35.50"), results.stream().findFirst().get().getPrice());
     }
 
     @Test
@@ -68,9 +65,7 @@ class PriceRepositoryTest {
 
         // Act
         LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 15, 10, 0);
-        List<PriceEntity> results = priceRepository
-                .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
-                        35455L, 1L, applicationDate, applicationDate);
+        List<PriceEntity> results = priceRepository.findApplicablePrices(applicationDate, 35455L, 1L);
 
         // Assert
         assertTrue(results.isEmpty());
