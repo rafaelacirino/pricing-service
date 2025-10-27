@@ -1,11 +1,13 @@
-package com.cirino.rafaela.inditex.pricingservice.domain.entity;
+package com.cirino.rafaela.inditex.pricingservice.domain.model;
 
-import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Price.
+ */
 @Getter
 @Builder
 public class Price {

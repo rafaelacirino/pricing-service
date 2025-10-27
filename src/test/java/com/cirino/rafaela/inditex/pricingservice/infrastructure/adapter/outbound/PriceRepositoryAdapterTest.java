@@ -1,6 +1,6 @@
 package com.cirino.rafaela.inditex.pricingservice.infrastructure.adapter.outbound;
 
-import com.cirino.rafaela.inditex.pricingservice.domain.entity.Price;
+import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.infrastructure.persistence.entity.PriceEntity;
 import com.cirino.rafaela.inditex.pricingservice.infrastructure.persistence.repository.PriceRepository;
 import org.junit.jupiter.api.Test;

@@ -160,28 +160,33 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── com/cirino/rafaela/inditex/pricingservice/
-│   │       ├── application/             # Application layer: orchestrates use cases
-│   │       │   ├── dto/                 # Data Transfer Objects for input/output
-│   │       │   ├── ports/               # Interfaces (inbound/outbound) for hexagonal architecture
-│   │       │   └── service/             # Business logic and service implementations
-│   │       ├── domain/                  # Domain layer: core business models
-│   │       │   ├── entity/              # JPA entities mapped to database tables
-│   │       │   ├── exception/           # Custom domain exceptions
-│   │       │   └── model/               # Value objects and domain-specific models
-│   │       ├── infrastructure/          # Infrastructure layer: external integrations
-│   │       │   ├── adapter/             # Adapters for persistence and other services
-│   │       │   ├── config/              # Spring configuration classes
-│   │       │   └── persistence/         # JPA repositories and database access
+│   │       ├── application/                 # Application layer: orchestrates use cases
+│   │       │   ├── dto/                     # Data Transfer Objects for input/output
+│   │       │   ├── ports/
+│   │       │   │   ├── inbound/             # Interfaces exposed to the outside (e.g., use cases)
+│   │       │   │   └── outbound/            # Interfaces required from external systems (e.g., repositories)
+│   │       │   └── service/                 # Business logic and use case implementations
+│   │       ├── domain/                      # Domain layer: core business rules and models
+│   │       │   ├── exception/               # Custom domain exceptions
+│   │       │   └── model/                   # Business-centric models like `Price` and `Money`
+│   │       ├── infrastructure/              # Infrastructure layer: technical details and external integrations
+│   │       │   ├── adapter/                 # Optional: shared adapter logic or legacy integrations
+│   │       │   │   ├── inbound/             # Adapters for incoming requests (e.g., REST controllers) 
+│   │       │   │   └── outbound/            # Adapters for external systems (e.g., database, APIs)
+│   │       │   ├── config/                  # Spring Boot configuration classes
+│   │       │   └── persistence/             # JPA repositories and data access implementations
+│   │       │   │   ├── entity/              # JPA entities like `PriceEntity`, mapped to database tables 
+│   │       │   │   └── repository/          # Repository interfaces for data access
 │   └── resources/
-│       ├── assets/                      # Screenshots and static assets
-│       ├── application.properties.yml   # Spring Boot configuration
-│       ├── data.sql                     # Initial H2 data for testing
-│       └── schema.sql                   # Database schema definition
+│       ├── assets/                          # Screenshots
+│       ├── application.properties.yml       # Spring Boot configuration
+│       ├── data.sql                         # Initial H2 data for testing
+│       └── schema.sql                       # Database schema definition
 └── test/
-    └── java/com/inditex/pricing/
-        ├── application/                 # Unit tests for service layer
-        ├── domain/                      # Integration tests with MockMvc
-        └── infrastructure/              # Unit tests for repository adapter
+    └── java/com/cirino/rafaela/inditex/pricingservice
+        ├── application/                     # Unit tests for service layer
+        ├── domain/                          # Unit tests for domain models and logic
+        └── infrastructure/                  # Unit and integration tests for controller
 ```
 ## 👩‍💻 Author:
 
