@@ -124,16 +124,30 @@ You can find these tests in the class:
 Visual documentation and screenshots of the Swagger UI, H2 Console, and test results.
 * Swagger UI
 ![Swagger UI](src/main/resources/assets/swaggerUI.png)
+
+
 * Swagger Request
 ![Swagger Request](src/main/resources/assets/swaggerRequest.png)
+
+
 * Swagger Response OK
 ![Swagger Request](src/main/resources/assets/swaggerResponse.png)
+
+
 * Swagger Response 404
 ![Swagger NOT FOUND](src/main/resources/assets/priceNotFound.png)
+
+
 * H2 Connection
+
+
 ![H2 Connection](src/main/resources/assets/h2Connection.png)
+
+
 * H2 Table / Data
 ![H2 Data](src/main/resources/assets/h2Data.png)
+
+
 * Code Coverage
 ![Sonar Results](src/main/resources/assets/sonarResult.png)
 
