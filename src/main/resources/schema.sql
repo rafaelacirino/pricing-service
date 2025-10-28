@@ -10,3 +10,6 @@ CREATE TABLE prices (
     price DECIMAL(10,2),
     curr VARCHAR(3)
 );
+
+CREATE INDEX idx_prices_brand_product_date ON prices (brand_id, product_id, start_date, end_date);
+CREATE INDEX idx_prices_priority ON prices (priority DESC);
