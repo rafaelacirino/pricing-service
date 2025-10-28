@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Price service.
+ */
 @Service
 public class PriceService implements GetPriceUseCase {
 

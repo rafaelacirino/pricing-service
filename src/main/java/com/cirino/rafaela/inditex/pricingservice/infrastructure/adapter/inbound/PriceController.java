@@ -3,7 +3,11 @@ package com.cirino.rafaela.inditex.pricingservice.infrastructure.adapter.inbound
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.inbound.GetPriceUseCase;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +19,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * The type Price controller.
  */
+@Tag(name = "Prices", description = "Operations related to product pricing")
 @RestController
-@RequestMapping("/api/v1/prices")
+@RequestMapping("/api/v1/prices/")
 public class PriceController {
 
     private final GetPriceUseCase getPriceUseCase;
@@ -26,12 +31,27 @@ public class PriceController {
     }
 
     @GetMapping("/brands/{brandId}/products/{productId}")
-    @Operation(summary = "Get applicable price", description = "Retrieve the applicable price for a product in a brand at a specific application date")
-    @ApiResponse(responseCode = "200", description = "Price found")
-    @ApiResponse(responseCode = "404", description = "Price not found")
+    @Operation(
+            summary = "Retrieve applicable price",
+            description = "Returns the applicable price for a given product, brand, and application date.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successful retrieval of price",
+                            content = @Content(schema = @Schema(implementation = PriceResponseDto.class))
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "No applicable price found"
+                    )
+            }
+    )
     public ResponseEntity<PriceResponseDto> getPrice(
-            @RequestParam Long brandId,
-            @RequestParam Long productId,
+            @Parameter(description = "Brand ID (e.g., 1 for ZARA)", example = "1", required = true)
+            @PathVariable Long brandId,
+            @Parameter(description = "Product ID (e.g., 35455)", example = "35455", required = true)
+            @PathVariable Long productId,
+            @Parameter(description = "Application date and time (ISO 8601)", example = "2020-06-14T10:00:00", required = true)
             @RequestParam("applicationDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate) {
 
         PriceResponseDto response = getPriceUseCase.getPrice(applicationDate, productId, brandId);

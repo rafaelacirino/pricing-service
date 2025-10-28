@@ -11,7 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,30 +32,19 @@ class PriceRepositoryAdapterTest {
         Long productId = 35455L;
         Long brandId = 1L;
 
-        PriceEntity lowPriority = new PriceEntity();
-        lowPriority.setProductId(productId);
-        lowPriority.setBrandId(brandId);
-        lowPriority.setBrandName("ZARA");
-        lowPriority.setStartDate(date.minusHours(1));
-        lowPriority.setEndDate(date.plusHours(2));
-        lowPriority.setPriceList(1);
-        lowPriority.setPriority(0);
-        lowPriority.setPrice(new BigDecimal("25.45"));
-        lowPriority.setCurrency("EUR");
-
-        PriceEntity highPriority = new PriceEntity();
-        highPriority.setProductId(productId);
-        highPriority.setBrandId(brandId);
-        highPriority.setBrandName("ZARA");
-        highPriority.setStartDate(date.minusHours(1));
-        highPriority.setEndDate(date.plusHours(2));
-        highPriority.setPriceList(2);
-        highPriority.setPriority(1);
-        highPriority.setPrice(new BigDecimal("35.50"));
-        highPriority.setCurrency("EUR");
+        PriceEntity entity = new PriceEntity();
+        entity.setProductId(productId);
+        entity.setBrandId(brandId);
+        entity.setBrandName("ZARA");
+        entity.setStartDate(date.minusHours(1));
+        entity.setEndDate(date.plusHours(2));
+        entity.setPriceList(2);
+        entity.setPriority(1);
+        entity.setPrice(new BigDecimal("35.50"));
+        entity.setCurrency("EUR");
 
         when(priceRepository.findApplicablePrices(date, productId, brandId))
-                .thenReturn(List.of(lowPriority, highPriority));
+                .thenReturn(Optional.of(entity));
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
 
@@ -77,7 +65,7 @@ class PriceRepositoryAdapterTest {
         Long productId = 35455L;
         Long brandId = 1L;
 
-        when(priceRepository.findApplicablePrices(date, productId, brandId)).thenReturn(List.of());
+        when(priceRepository.findApplicablePrices(date, productId, brandId)).thenReturn(Optional.empty());
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
 
