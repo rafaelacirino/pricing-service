@@ -1,6 +1,11 @@
-# Pricing Service
-## Back-end con Tecnologías de Código Abierto (BETCA).
-> Technical test project for a Spring Boot REST API that calculates applicable product prices based on brand, product ID, and application date. Designed following Hexagonal Architecture principles and built with open-source technologies.
+# GET endpoint with good practices
+
+```text
+This project meets the following client and test criteria:
+
+- Efficient data extraction: The SQL query uses indexed fields, filters by date range, and selects only the highest priority price using `ORDER BY priority DESC LIMIT 1`.
+- GET endpoint with best practices: The API uses a RESTful GET method with path and query parameters, no request body, and clear Swagger documentation. Responses follow HTTP standards (200 OK, 404 Not Found).
+```
 
 ---
 

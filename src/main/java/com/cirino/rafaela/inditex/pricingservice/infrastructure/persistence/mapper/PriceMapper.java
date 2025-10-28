@@ -4,7 +4,12 @@ import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.infrastructure.persistence.entity.PriceEntity;
 
+
 public class PriceMapper {
+
+    private PriceMapper() {
+        // Utility class, no instances allowed
+    }
 
     public static Price toDomain(PriceEntity entity) {
         return Price.builder()
