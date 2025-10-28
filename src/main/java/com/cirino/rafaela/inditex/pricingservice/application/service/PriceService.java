@@ -3,8 +3,9 @@ package com.cirino.rafaela.inditex.pricingservice.application.service;
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.inbound.GetPriceUseCase;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.outbound.PriceRepositoryPort;
-import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.domain.exception.PriceNotFoundException;
+import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class PriceService implements GetPriceUseCase {
         this.priceRepository = priceRepository;
     }
 
+    @Cacheable(value = "prices", key = "#applicationDate.toString() + '-' + #productId + '-' + #brandId")
     @Override
     public PriceResponseDto getPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         Price price = priceRepository.findApplicablePrice(applicationDate, productId, brandId)
