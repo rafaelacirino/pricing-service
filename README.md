@@ -160,27 +160,28 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── com/cirino/rafaela/inditex/pricingservice/
-│   │       ├── application/                 # Application layer: orchestrates use cases
+│   │       ├── application/                 # Application layer: coordinates use cases and business orchestration
 │   │       │   ├── dto/                     # Data Transfer Objects for input/output
 │   │       │   ├── ports/
-│   │       │   │   ├── inbound/             # Interfaces exposed to the outside (e.g., use cases)
-│   │       │   │   └── outbound/            # Interfaces required from external systems (e.g., repositories)
-│   │       │   └── service/                 # Business logic and use case implementations
-│   │       ├── domain/                      # Domain layer: core business rules and models
+│   │       │   │   ├── inbound/             # Interfaces defining use cases exposed to external layers
+│   │       │   │   └── outbound/            # Interfaces defining interactions with external systems (e.g., repositories)
+│   │       │   └── service/                 # Implementations of use cases and business logic
+│   │       ├── domain/                      # Domain layer: encapsulates core business rules and entities
 │   │       │   ├── exception/               # Custom domain exceptions
-│   │       │   └── model/                   # Business-centric models like `Price` and `Money`
-│   │       ├── infrastructure/              # Infrastructure layer: technical details and external integrations
+│   │       │   └── model/                   # Domain models (e.g., `Price`, `Money`)
+│   │       ├── infrastructure/              # Infrastructure layer: handles technical and external integrations
 │   │       │   ├── adapter/                 # Optional: shared adapter logic or legacy integrations
 │   │       │   │   ├── inbound/             # Adapters for incoming requests (e.g., REST controllers) 
 │   │       │   │   └── outbound/            # Adapters for external systems (e.g., database, APIs)
 │   │       │   ├── config/                  # Spring Boot configuration classes
-│   │       │   └── persistence/             # JPA repositories and data access implementations
-│   │       │   │   ├── entity/              # JPA entities like `PriceEntity`, mapped to database tables 
+│   │       │   └── persistence/             # Data access layer implementations
+│   │       │   │   ├── entity/              # JPA entities mapped to database tables (e.g., `PriceEntity`)
+│   │       │   │   ├── mapper/              # Mapping utilities (e.g., MapStruct) between entities and DTOs
 │   │       │   │   └── repository/          # Repository interfaces for data access
 │   └── resources/
-│       ├── assets/                          # Screenshots
-│       ├── application.properties.yml       # Spring Boot configuration
-│       ├── data.sql                         # Initial H2 data for testing
+│       ├── assets/                          # Screenshots or supporting documentation images
+│       ├── application.yml                  # Spring Boot configuration file
+│       ├── data.sql                         # Initial data for the H2 in-memory database
 │       └── schema.sql                       # Database schema definition
 └── test/
     └── java/com/cirino/rafaela/inditex/pricingservice

@@ -5,6 +5,7 @@ import com.cirino.rafaela.inditex.pricingservice.application.ports.outbound.Pric
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.domain.exception.PriceNotFoundException;
 import com.cirino.rafaela.inditex.pricingservice.domain.model.Money;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,12 +29,19 @@ class PriceServiceTest {
     @InjectMocks
     private PriceService priceService;
 
+    private LocalDateTime date;
+    private Long productId;
+    private Long brandId;
+
+    @BeforeEach
+    void setup() {
+        date = LocalDateTime.of(2020, 6, 14, 10, 0);
+        productId = 35455L;
+        brandId = 1L;
+    }
+
     @Test
     void shouldReturnPriceResponseDtoWhenPriceIsFound() {
-        LocalDateTime date = LocalDateTime.of(2020, 6, 14, 10, 0);
-        Long productId = 35455L;
-        Long brandId = 1L;
-
         Price mockPrice = Price.builder()
                 .productId(productId)
                 .brandId(brandId)
@@ -62,10 +70,6 @@ class PriceServiceTest {
 
     @Test
     void shouldThrowPriceNotFoundExceptionWhenPriceIsNotFound() {
-        LocalDateTime date = LocalDateTime.of(2020, 6, 14, 21, 0);
-        Long productId = 35455L;
-        Long brandId = 1L;
-
         when(priceRepository.findApplicablePrice(date, productId, brandId))
                 .thenReturn(Optional.empty());
 
@@ -74,6 +78,6 @@ class PriceServiceTest {
                 () -> priceService.getPrice(date, productId, brandId)
         );
 
-        assertEquals("Price not found for product 35455, brand 1 at 2020-06-14T21:00.", exception.getMessage());
+        assertEquals("Price not found for product 35455, brand 1 at 2020-06-14T10:00.", exception.getMessage());
     }
 }
