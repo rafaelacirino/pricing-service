@@ -1,6 +1,7 @@
 package com.cirino.rafaela.inditex.pricingservice.application.service;
 
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
+import com.cirino.rafaela.inditex.pricingservice.application.mapper.PriceResponseMapper;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.inbound.GetPriceUseCase;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.outbound.PriceRepositoryPort;
 import com.cirino.rafaela.inditex.pricingservice.domain.exception.PriceNotFoundException;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 /**
- * The type Price service.
- */
+ * Application service responsible for retrieving the applicable price for a product and brand
+ * at a specific date and time. Implements the {@link GetPriceUseCase} interface.
+ * This service uses caching to optimize repeated queries and delegates data access to the
+ * {@link PriceRepositoryPort}, applying business rules such as selecting the price with the highest priority.
+ * */
 @Service
 public class PriceService implements GetPriceUseCase {
 
@@ -28,15 +32,6 @@ public class PriceService implements GetPriceUseCase {
         Price price = priceRepository.findApplicablePrice(applicationDate, productId, brandId)
                 .orElseThrow(() -> new PriceNotFoundException(applicationDate, productId, brandId));
 
-        return PriceResponseDto.builder()
-                .productId(price.getProductId())
-                .brandId(price.getBrandId())
-                .brandName(price.getBrandName())
-                .priceList(price.getPriceList())
-                .startDate(price.getStartDate())
-                .endDate(price.getEndDate())
-                .price(price.getMoney().getAmount())
-                .currency(price.getMoney().getCurrency())
-                .build();
+        return PriceResponseMapper.toDto(price);
     }
 }
