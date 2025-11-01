@@ -1,13 +1,18 @@
+# =============================================
+#  Pricing Service – Application Configuration
+# =============================================
 spring:
   application:
-    name: pricing-service
+    name: pricing-service # Application name (used in logs, metrics, health checks)
 
+  # ---------- In‑memory H2 Database ----------
   datasource:
     url: jdbc:h2:mem:pricingservice;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: ps
     password: pricing1234
 
+  # ---------- JPA / Hibernate ----------
   jpa:
     hibernate:
       ddl-auto: none
@@ -16,6 +21,7 @@ spring:
         format_sql: false
         show_sql: false
 
+  # ---------- Database Initialization ----------
   sql:
     init:
       mode: embedded
@@ -23,6 +29,7 @@ spring:
       data-locations: classpath:data.sql
       continue-on-error: false
 
+  # ---------- H2 Web Console (dev / test only) ----------
   h2:
     console:
       enabled: true
@@ -31,9 +38,11 @@ spring:
         trace: false
         web-allow-others: false
 
+  # ---------- Cache (Caffeine) ----------
   cache:
     type: caffeine
 
+# ---------- SpringDoc OpenAPI (Swagger UI) ----------
 springdoc:
   api-docs:
     enabled: true
@@ -41,6 +50,7 @@ springdoc:
     enabled: true
   paths-to-match: /api/**
 
+# ---------- Logging ----------
 logging:
   level:
     org.springframework: INFO
