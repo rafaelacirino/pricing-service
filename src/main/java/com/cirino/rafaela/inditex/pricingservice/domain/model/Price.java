@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 /**
- * Domain model.
+ * Domain model. Immutable via Builder.
  */
 @Getter
 @Builder

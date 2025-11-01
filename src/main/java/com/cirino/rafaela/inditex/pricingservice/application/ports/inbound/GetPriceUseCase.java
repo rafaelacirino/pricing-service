@@ -13,6 +13,7 @@ public interface GetPriceUseCase {
      * @param applicationDate the application date
      * @param productId       the product id
      * @param brandId         the brand id
+     * @return DTO with applicable price
      */
     PriceResponseDto getPrice(LocalDateTime applicationDate, Long productId, Long brandId);
 }
