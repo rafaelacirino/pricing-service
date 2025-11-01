@@ -5,6 +5,9 @@ import com.cirino.rafaela.inditex.pricingservice.domain.model.Price;
 import com.cirino.rafaela.inditex.pricingservice.infrastructure.persistence.entity.PriceEntity;
 
 
+/**
+ * Converts between entity and domain model.
+ */
 public class PriceMapper {
 
     private PriceMapper() {

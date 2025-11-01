@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 /**
- * The type Price.
+ * Domain model.
  */
 @Getter
 @Builder
