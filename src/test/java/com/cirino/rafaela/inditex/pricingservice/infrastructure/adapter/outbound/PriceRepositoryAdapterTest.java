@@ -43,7 +43,7 @@ class PriceRepositoryAdapterTest {
         entity.setPrice(new BigDecimal("35.50"));
         entity.setCurrency("EUR");
 
-        when(priceRepository.findApplicablePrices(date, productId, brandId))
+        when(priceRepository.findApplicablePrice(date, productId, brandId))
                 .thenReturn(Optional.of(entity));
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
@@ -65,7 +65,7 @@ class PriceRepositoryAdapterTest {
         Long productId = 35455L;
         Long brandId = 1L;
 
-        when(priceRepository.findApplicablePrices(date, productId, brandId)).thenReturn(Optional.empty());
+        when(priceRepository.findApplicablePrice(date, productId, brandId)).thenReturn(Optional.empty());
 
         Optional<Price> result = adapter.findApplicablePrice(date, productId, brandId);
 

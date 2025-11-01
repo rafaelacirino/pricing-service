@@ -11,16 +11,20 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The type Price controller.
+ * REST controller for querying applicable prices.
+ * Input: application date, product ID, and supply chain ID.
+ * Output: the highest priority price within the date range.
  */
 @Tag(name = "Prices", description = "Operations related to product pricing")
 @RestController
+@Validated
 @RequestMapping("/api/v1/prices/")
 public class PriceController {
 

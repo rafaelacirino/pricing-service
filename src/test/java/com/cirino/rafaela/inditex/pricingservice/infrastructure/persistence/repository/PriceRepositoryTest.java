@@ -39,7 +39,7 @@ class PriceRepositoryTest {
 
         // Act
         LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0);
-        Optional<PriceEntity> results = priceRepository.findApplicablePrices(applicationDate, 35455L, 1L);
+        Optional<PriceEntity> results = priceRepository.findApplicablePrice(applicationDate, 35455L, 1L);
 
         // Assert
         assertFalse(results.isEmpty());
@@ -65,7 +65,7 @@ class PriceRepositoryTest {
 
         // Act
         LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 15, 10, 0);
-        Optional<PriceEntity> results = priceRepository.findApplicablePrices(applicationDate, 35455L, 1L);
+        Optional<PriceEntity> results = priceRepository.findApplicablePrice(applicationDate, 35455L, 1L);
 
         // Assert
         assertTrue(results.isEmpty());

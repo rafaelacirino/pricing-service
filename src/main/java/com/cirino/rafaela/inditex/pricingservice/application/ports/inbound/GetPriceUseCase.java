@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 public interface GetPriceUseCase {
 
     /**
-     * Gets price.
+     * Interface for price inquiry use cases.
+     * Defines the contract to retrieve the applicable price.
      *
      * @param applicationDate the application date
      * @param productId       the product id
      * @param brandId         the brand id
-     * @return the price
      */
     PriceResponseDto getPrice(LocalDateTime applicationDate, Long productId, Long brandId);
 }
