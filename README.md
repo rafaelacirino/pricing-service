@@ -215,6 +215,12 @@ src/
         ├── domain/                          # Unit tests for domain models and logic
         └── infrastructure/                  # Unit and integration tests for controller
 ```
+
+## Version Control 
+- Conventional Commits: `feat:`, `docs:`, `test:`, `refactor:` for clear history.
+- Latest commits standardized for evaluation (e.g., "docs: finalize README...").
+- Tag: v1.0.0 for final delivery.
+
 ## 👩‍💻 Author:
 
 **Rafaela Cirino**
