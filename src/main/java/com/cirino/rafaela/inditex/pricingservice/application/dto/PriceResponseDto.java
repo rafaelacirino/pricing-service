@@ -7,6 +7,10 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * DTO representing the response returned by the pricing API.
+ * Contains the applicable price details for a given product, brand, and date.
+ */
 @Getter
 @Builder
 @Schema(description = "Response with applicable price and HATEOAS links")

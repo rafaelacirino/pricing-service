@@ -62,7 +62,7 @@ This project is structured using **Hexagonal Architecture**:
 - [MockMvc](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#spring-mvc-test-framework) — Simulates HTTP requests in integration tests
 - [JaCoCo](https://www.jacoco.org/jacoco/) — Code coverage reports for tests
 - [SonarCloud](https://sonarcloud.io/) — Continuous inspection of code quality and security
-- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline for automated builds and tests
+- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline for automated builds and tests 
 
 ---
 
@@ -82,6 +82,26 @@ This project is structured using **Hexagonal Architecture**:
 - Username: ps
 - Password: (leave blank)
 
+---
+
+## Application Configuration (`application.yml`)
+
+The application is configured using `application.yml` with **clear comments in English**.
+
+### Key Configuration Highlights:
+
+| Feature | Configuration | Purpose                                    |
+|--------|---------------|--------------------------------------------|
+| **H2 In-Memory DB** | `jdbc:h2:mem:pricingservice` | Isolated, fast, auto-initialized           |
+| **Secure Credentials** | `username: ps`, `password: pricing1234` | Avoids default/empty password              |
+| **Schema & Data Init** | `spring.sql.init.mode=embedded` | Loads `schema.sql` + `data.sql` on startup |
+| **No DDL Auto** | `spring.jpa.hibernate.ddl-auto=none` | Prevents conflicts with `schema.sql`       |
+| **Fail Fast on SQL Error** | `continue-on-error: false` | Ensures data integrity                     |
+| **Cache** | `spring.cache.type=caffeine` | Improves performance on repeated queries   |
+| **Swagger UI** | `springdoc` enabled | Full API documentation                     |
+| **Logging** | File + structured levels | Debuggable in production                   |
+
+> **All properties are commented in the file** to explain **why** they exist — essential for maintainability and evaluation.
 ---
 
 ## Testing
@@ -166,7 +186,8 @@ src/
 │   ├── java/
 │   │   └── com/cirino/rafaela/inditex/pricingservice/
 │   │       ├── application/                 # Application layer: coordinates use cases and business orchestration
-│   │       │   ├── dto/                     # Data Transfer Objects for input/output
+│   │       │   ├── dto/                     # Mapping utilities between model and DTO
+│   │       │   ├── mapper/                  # Data Transfer Objects for input/output
 │   │       │   ├── ports/
 │   │       │   │   ├── inbound/             # Interfaces defining use cases exposed to external layers
 │   │       │   │   └── outbound/            # Interfaces defining interactions with external systems (e.g., repositories)
@@ -194,6 +215,12 @@ src/
         ├── domain/                          # Unit tests for domain models and logic
         └── infrastructure/                  # Unit and integration tests for controller
 ```
+
+## Version Control 
+- Conventional Commits: `feat:`, `docs:`, `test:`, `refactor:` for clear history.
+- Latest commits standardized for evaluation (e.g., "docs: finalize README...").
+- Tag: v1.0.0 for final delivery.
+
 ## 👩‍💻 Author:
 
 **Rafaela Cirino**

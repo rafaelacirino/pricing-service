@@ -1,8 +1,7 @@
 package com.cirino.rafaela.inditex.pricingservice.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,6 +13,9 @@ import java.time.LocalDateTime;
 @Table(name = "prices")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PriceEntity {
 
     @Id

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * The type Price repository adapter.
+ * Adapter between JPA and domain.
  */
 @Component
 public class PriceRepositoryAdapter implements PriceRepositoryPort {
@@ -23,7 +23,7 @@ public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
     @Override
     public Optional<Price> findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
-        return priceRepository.findApplicablePrices(applicationDate, productId, brandId)
+        return priceRepository.findApplicablePrice(applicationDate, productId, brandId)
                 .map(PriceMapper::toDomain);
     }
 }
