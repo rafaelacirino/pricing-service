@@ -1,5 +1,6 @@
 package com.cirino.rafaela.inditex.pricingservice.infrastructure.adapter.inbound;
 
+import com.cirino.rafaela.inditex.pricingservice.application.dto.ErrorResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.dto.PriceResponseDto;
 import com.cirino.rafaela.inditex.pricingservice.application.ports.inbound.GetPriceUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,14 +43,16 @@ public class PriceController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successful retrieval of price",
-                            content = @Content(schema = @Schema(implementation = PriceResponseDto.class))
-                    ),
+                            content = @Content(schema = @Schema(implementation = PriceResponseDto.class))),
                     @ApiResponse(
                             responseCode = "404",
-                            description = "No applicable price found"
-                    )
-            }
-    )
+                            description = "No applicable price found",
+                            content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Unexpected server error",
+                            content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
+            })
     public ResponseEntity<PriceResponseDto> getPrice(
             @Parameter(description = "Brand ID (e.g., 1 for ZARA)", example = "1", required = true)
             @PathVariable Long brandId,
