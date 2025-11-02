@@ -62,7 +62,7 @@ This project is structured using **Hexagonal Architecture**:
 - [MockMvc](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#spring-mvc-test-framework) — Simulates HTTP requests in integration tests
 - [JaCoCo](https://www.jacoco.org/jacoco/) — Code coverage reports for tests
 - [SonarCloud](https://sonarcloud.io/) — Continuous inspection of code quality and security
-- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline for automated builds and tests
+- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline for automated builds and tests 
 
 ---
 
