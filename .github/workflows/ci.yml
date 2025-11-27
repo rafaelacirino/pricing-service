@@ -9,7 +9,7 @@ jobs:
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v6.0.0
         with:
           fetch-depth: 0
 
@@ -36,7 +36,7 @@ jobs:
         if: success() # always() failure() success()
         run: |
           mvn -B verify -DskipTests sonar:sonar \
-            -Dsonar.projectKey=rafaelacirino_pricing-service \
+            -Dsonar.projectKey=rafaelacirino_training-courses-api \
             -Dsonar.organization=rafaelacirino \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=$SONAR_TOKEN
